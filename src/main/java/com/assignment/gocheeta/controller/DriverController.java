@@ -1,15 +1,20 @@
 package com.assignment.gocheeta.controller;
 
-import org.springframework.stereotype.Controller;
+import java.util.List;
+
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 
 import com.assignment.gocheeta.model.Driver;
 import com.assignment.gocheeta.services.DriverService;
 
 
-@Controller
+@RestController
 @RequestMapping("/api/v1/")
 public class DriverController {
 
@@ -22,6 +27,11 @@ public class DriverController {
     @PostMapping("/createDriver")
     public Driver createDriver(@RequestBody Driver driver){
         return driverService.createDriver(driver);
+    }
+
+    @GetMapping("/getDrivers")
+    public List<Driver> getAllDrivers(){
+        return driverService.getAllDrivers();
     }
     
 }
