@@ -1,17 +1,22 @@
 package com.assignment.gocheeta.services;
 
 import java.util.List;
+import java.util.Optional;
 
-import com.assignment.gocheeta.model.UserModel;
+import com.assignment.gocheeta.model.User;
 
 public interface UserService {
 
-    UserModel createUser(UserModel user);
+    User createUser(User user);
 
-    List<UserModel> getAllUsers();
+    List<User> getAllUsers();
 
-    UserModel getUser(Long id);
+    User getUser(Long id);
 
     boolean deleteUser(Long id);
-    
+
+    User updateUser(Long id, User user);
+
+    User findUser(String email);
+
 }

@@ -1,13 +1,15 @@
 package com.assignment.gocheeta.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.assignment.gocheeta.entity.UserEntity;
-import com.assignment.gocheeta.model.UserModel;
+import com.assignment.gocheeta.model.User;
 import com.assignment.gocheeta.repository.UserRepository;
 
 @Service
@@ -22,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserModel createUser(UserModel user) {
+    public User createUser(User user) {
         UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(user, userEntity);
         userRepository.save(userEntity);
@@ -31,17 +33,17 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<UserModel> getAllUsers() {
+    public List<User> getAllUsers() {
         List<UserEntity> userEntities = userRepository.findAll();
-        List<UserModel> users = userEntities.stream().map(user -> new UserModel(user.getId(),user.getEmail(),user.getName(),user.getPassword())).collect(Collectors.toList());
+        List<User> users = userEntities.stream().map(user -> new User(user.getId(),user.getName(),user.getEmail(),user.getPassword())).collect(Collectors.toList());
         return users;
     }
 
 
     @Override
-    public UserModel getUser(Long id) {
+    public User getUser(Long id) {
         UserEntity userEntity = userRepository.findById(id).get();
-        UserModel user = new UserModel(userEntity.getId(), userEntity.getName(), userEntity.getEmail(), userEntity.getPassword());
+        User user = new User(userEntity.getId(), userEntity.getName(), userEntity.getEmail(), userEntity.getPassword());
         return user;
     }
 
@@ -54,6 +56,24 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+
+    @Override
+    public User updateUser(Long id, User user) {
+        UserEntity ue = userRepository.findById(id).get();
+        ue.setName(user.getName());
+        ue.setEmail(user.getEmail());
+        ue.setPassword(user.getPassword());
+        userRepository.save(ue);
+        return user;
+    }
+
+
+    @Override
+    public User findUser(String email) {
+        UserEntity ue = userRepository.findByEmail(email);
+        User user = new User(ue.getId(),ue.getName(),ue.getEmail(),ue.getPassword());
+        return user;
+    }
 
 
     

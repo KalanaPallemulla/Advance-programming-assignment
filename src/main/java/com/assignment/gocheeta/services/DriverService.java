@@ -11,4 +11,10 @@ public interface DriverService {
     
     List<Driver> getAllDrivers();
 
+    Driver getDriver(Long id);
+
+    boolean deleteDriver(Long id);
+
+    Driver updateDriver(Long id, Driver driver);
+
 }

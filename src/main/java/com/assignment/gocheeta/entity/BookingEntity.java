@@ -1,24 +1,25 @@
 package com.assignment.gocheeta.entity;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.assignment.gocheeta.model.Driver;
+import com.assignment.gocheeta.model.User;
+
 import lombok.Data;
+
 
 @Entity
 @Data
-@Table(name = "users")
-public class UserEntity {
-
+@Table(name="bookings")
+public class BookingEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
-    @Column(unique=true)
-    private String email;
-    private String password;
+    private User user;
+    private Driver driver;
 }
