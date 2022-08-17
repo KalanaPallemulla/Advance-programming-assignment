@@ -29,17 +29,17 @@ public class Branch {
     private long id;
     private String name;
 
-    // @ManyToMany
-    // @JoinTable(
-    //     name="user_bookings",
-    //     joinColumns  = @JoinColumn(name="branch_id"),
-    //     inverseJoinColumns = @JoinColumn(name = "user_id")
-    // )
-    // private Set<User> branchBookings = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+        name="user_bookings",
+        joinColumns  = @JoinColumn(name="branch_id"),
+        inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<User> branchBookings = new HashSet<>();
 
-    // public void getBranchBookings(User user) {
-    //     branchBookings.add(user);
-    // }
+    public void getBranchBookings(User user) {
+        branchBookings.add(user);
+    }
 
    
 }

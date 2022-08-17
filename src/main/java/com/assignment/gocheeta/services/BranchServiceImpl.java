@@ -63,10 +63,9 @@ public class BranchServiceImpl implements BranchService {
     @Override
     public Branch createNewBooking(Long branchId, Long userId) {
         Branch branchEntity = branchRepository.findById(branchId).get();
-        // UserEntity userEntity = userRepository.findById(userId).get(); 
-        // User user = new User(userEntity.getId(), userEntity.getName(), userEntity.getEmail(), userEntity.getPassword());
-        // branchEntity.getBranchBookings(user);
-        // branchRepository.save(branchEntity);
+        User userEntity = userRepository.findById(userId).get(); 
+        branchEntity.getBranchBookings(userEntity);
+        branchRepository.save(branchEntity);
         return branchEntity;
     }
 

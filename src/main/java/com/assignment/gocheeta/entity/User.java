@@ -32,8 +32,8 @@ public class User {
     private String email;
     private String password;
 
-    // @JsonIgnore
-    // @ManyToMany(mappedBy = "branchBookings")
-    // private  Set<Branch> branches = new HashSet<>(); 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "branchBookings")
+    private  Set<Branch> branches = new HashSet<>(); 
 
 }
