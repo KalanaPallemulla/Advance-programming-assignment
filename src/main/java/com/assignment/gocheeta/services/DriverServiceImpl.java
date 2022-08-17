@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import com.assignment.gocheeta.entity.DriverEntity;
+import com.assignment.gocheeta.entity.Driver;
 import com.assignment.gocheeta.repository.DriverRepository;
 
 @Service
@@ -19,16 +19,16 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public DriverEntity createDriver(DriverEntity driver) {
-        DriverEntity driverEntity = new DriverEntity();
+    public Driver createDriver(Driver driver) {
+        Driver driverEntity = new Driver();
         BeanUtils.copyProperties(driver, driverEntity);
         driverRepository.save(driverEntity);
         return driver;
     }
 
     @Override
-    public List<DriverEntity> getAllDrivers() {
-        List<DriverEntity> driverEntity = driverRepository.findAll();
+    public List<Driver> getAllDrivers() {
+        List<Driver> driverEntity = driverRepository.findAll();
 
 
         return driverEntity;
@@ -36,21 +36,21 @@ public class DriverServiceImpl implements DriverService {
     
 
     @Override
-    public DriverEntity getDriver(Long id) {
-        DriverEntity driverEntity = driverRepository.findById(id).get();
+    public Driver getDriver(Long id) {
+        Driver driverEntity = driverRepository.findById(id).get();
         return driverEntity;
     }
 
     @Override
     public boolean deleteDriver(Long id) {
-        DriverEntity driverEntity = driverRepository.findById(id).get();
+        Driver driverEntity = driverRepository.findById(id).get();
         driverRepository.delete(driverEntity);
         return true;
     }
 
     @Override
-    public DriverEntity updateDriver(Long id, DriverEntity driver) {
-        DriverEntity de = driverRepository.findById(id).get();
+    public Driver updateDriver(Long id, Driver driver) {
+        Driver de = driverRepository.findById(id).get();
 
         de.setName(driver.getName());
         de.setUsername(driver.getUsername());

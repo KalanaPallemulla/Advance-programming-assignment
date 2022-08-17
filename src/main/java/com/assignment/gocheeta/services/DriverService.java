@@ -3,19 +3,20 @@ package com.assignment.gocheeta.services;
 
 import java.util.List;
 
-import com.assignment.gocheeta.entity.DriverEntity;
+import com.assignment.gocheeta.entity.Driver;
+
 
 
 public interface DriverService {
 
-    DriverEntity createDriver(DriverEntity driver);
+    Driver createDriver(Driver driver);
     
-    List<DriverEntity> getAllDrivers();
+    List<Driver> getAllDrivers();
 
-    DriverEntity getDriver(Long id);
+    Driver getDriver(Long id);
 
     boolean deleteDriver(Long id);
 
-    DriverEntity updateDriver(Long id, DriverEntity driver);
+    Driver updateDriver(Long id, Driver driver);
 
 }
