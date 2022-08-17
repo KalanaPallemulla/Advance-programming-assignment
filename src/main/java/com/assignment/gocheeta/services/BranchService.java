@@ -16,4 +16,6 @@ public interface BranchService {
 
     Branch updateBranch(Long id, Branch branch);
 
+    Branch createNewBooking(Long branchId, Long userId);
+
 }

@@ -57,4 +57,9 @@ public class BranchController {
         branch = branchService.updateBranch(id, branch);
         return ResponseEntity.ok(branch);
     }
+
+    @PutMapping("/branch/{branchId}/user/{userId}")
+    public Branch createNewBooking(@PathVariable Long branchId, @PathVariable Long userId){
+        return branchService.createNewBooking(branchId, userId);
+    }
 }
