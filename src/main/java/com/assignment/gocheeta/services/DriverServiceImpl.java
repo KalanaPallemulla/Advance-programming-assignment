@@ -7,7 +7,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.assignment.gocheeta.entity.DriverEntity;
-import com.assignment.gocheeta.model.Driver;
 import com.assignment.gocheeta.repository.DriverRepository;
 
 @Service
@@ -20,7 +19,7 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public Driver createDriver(Driver driver) {
+    public DriverEntity createDriver(DriverEntity driver) {
         DriverEntity driverEntity = new DriverEntity();
         BeanUtils.copyProperties(driver, driverEntity);
         driverRepository.save(driverEntity);
@@ -28,20 +27,18 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public List<Driver> getAllDrivers() {
+    public List<DriverEntity> getAllDrivers() {
         List<DriverEntity> driverEntity = driverRepository.findAll();
-        List<Driver> drivers = driverEntity.stream().map(driver -> new Driver(driver.getId(),driver.getName(),  driver.getContactNo(), driver.getUsername(),driver.getBranch())).collect(Collectors.toList());
 
 
-        return drivers;
+        return driverEntity;
     }
     
 
     @Override
-    public Driver getDriver(Long id) {
+    public DriverEntity getDriver(Long id) {
         DriverEntity driverEntity = driverRepository.findById(id).get();
-        Driver driver = new Driver(driverEntity.getId(),driverEntity.getName(),driverEntity.getBranch(),driverEntity.getContactNo(), driverEntity.getUsername());
-        return driver;
+        return driverEntity;
     }
 
     @Override
@@ -52,7 +49,7 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public Driver updateDriver(Long id, Driver driver) {
+    public DriverEntity updateDriver(Long id, DriverEntity driver) {
         DriverEntity de = driverRepository.findById(id).get();
 
         de.setName(driver.getName());

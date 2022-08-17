@@ -2,7 +2,8 @@ package com.assignment.gocheeta.services;
 
 import java.util.List;
 
-import com.assignment.gocheeta.model.Branch;
+import com.assignment.gocheeta.entity.Branch;
+
 
 public interface BranchService {
 

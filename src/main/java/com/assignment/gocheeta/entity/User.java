@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.assignment.gocheeta.model.Branch;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -23,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
-public class UserEntity {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
@@ -33,8 +32,8 @@ public class UserEntity {
     private String email;
     private String password;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "branchBookings")
-    private  Set<Branch> branches = new HashSet<>(); 
+    // @JsonIgnore
+    // @ManyToMany(mappedBy = "branchBookings")
+    // private  Set<Branch> branches = new HashSet<>(); 
 
 }

@@ -3,7 +3,8 @@ package com.assignment.gocheeta.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.assignment.gocheeta.model.User;
+import com.assignment.gocheeta.entity.User;
+
 
 public interface UserService {
 

@@ -8,8 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import com.assignment.gocheeta.entity.UserEntity;
-import com.assignment.gocheeta.model.User;
+import com.assignment.gocheeta.entity.User;
 import com.assignment.gocheeta.repository.UserRepository;
 
 @Service
@@ -25,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        UserEntity userEntity = new UserEntity();
+        User userEntity = new User();
         BeanUtils.copyProperties(user, userEntity);
         userRepository.save(userEntity);
         return user;
@@ -34,23 +33,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers() {
-        List<UserEntity> userEntities = userRepository.findAll();
-        List<User> users = userEntities.stream().map(user -> new User(user.getId(),user.getName(),user.getEmail(),user.getPassword())).collect(Collectors.toList());
-        return users;
+        List<User> userEntities = userRepository.findAll();
+        // List<UserEntity> users = userEntities.stream().map(user -> new User(user.getId(),user.getName(),user.getEmail(),user.getPassword())).collect(Collectors.toList());
+        return userEntities;
     }
 
 
     @Override
     public User getUser(Long id) {
-        UserEntity userEntity = userRepository.findById(id).get();
-        User user = new User(userEntity.getId(), userEntity.getName(), userEntity.getEmail(), userEntity.getPassword());
-        return user;
+        User userEntity = userRepository.findById(id).get();
+        // User user = new User(userEntity.getId(), userEntity.getName(), userEntity.getEmail(), userEntity.getPassword());
+        return userEntity;
     }
 
 
     @Override
     public boolean deleteUser(Long id) {
-        UserEntity user = userRepository.findById(id).get();
+        User user = userRepository.findById(id).get();
         userRepository.delete(user);
 
         return true;
@@ -59,7 +58,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(Long id, User user) {
-        UserEntity ue = userRepository.findById(id).get();
+        User ue = userRepository.findById(id).get();
         ue.setName(user.getName());
         ue.setEmail(user.getEmail());
         ue.setPassword(user.getPassword());
@@ -70,9 +69,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUser(String email) {
-        UserEntity ue = userRepository.findByEmail(email);
-        User user = new User(ue.getId(),ue.getName(),ue.getEmail(),ue.getPassword());
-        return user;
+        User ue = userRepository.findByEmail(email);
+        // User user = new User(ue.getId(),ue.getName(),ue.getEmail(),ue.getPassword());
+        return ue;
     }
 
 

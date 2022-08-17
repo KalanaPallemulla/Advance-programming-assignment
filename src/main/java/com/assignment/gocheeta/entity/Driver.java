@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.assignment.gocheeta.model.Branch;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "drivers")
-public class DriverEntity {
+public class Driver {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
