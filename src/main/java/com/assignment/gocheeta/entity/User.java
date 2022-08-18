@@ -3,11 +3,14 @@ package com.assignment.gocheeta.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -15,25 +18,37 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import javax.persistence.JoinColumn;
 
 @Entity
-@Data
+// @Data
+@Table(name = "users")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
-    @Column(unique=true)
+    @Column(unique = true)
     private String email;
     private String password;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "branchBookings")
-    private  Set<Branch> branches = new HashSet<>(); 
+    // @JsonIgnore
+    // @ManyToMany(mappedBy = "branchBookings")
+    // private Set<Branch> branches = new HashSet<>();
+
+    // public Set<Branch> getBranches(){
+    // return branches;
+    // }
+
+    @ManyToMany(mappedBy = "branchBookings", fetch = FetchType.LAZY)
+    private Set<Branch> branches = new HashSet<>();
 
 }

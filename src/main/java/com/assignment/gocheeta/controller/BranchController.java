@@ -59,7 +59,7 @@ public class BranchController {
     }
 
     @PutMapping("/branch/{branchId}/user/{userId}")
-    public Branch createNewBooking(@PathVariable Long branchId, @PathVariable Long userId){
+    Branch createNewBooking(@PathVariable Long branchId, @PathVariable Long userId){
         return branchService.createNewBooking(branchId, userId);
     }
 }

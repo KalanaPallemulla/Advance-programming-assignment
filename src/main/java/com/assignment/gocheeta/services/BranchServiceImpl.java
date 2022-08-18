@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.assignment.gocheeta.entity.Branch;
@@ -13,16 +14,18 @@ import com.assignment.gocheeta.repository.UserRepository;
 
 @Service
 public class BranchServiceImpl implements BranchService {
-    private  BranchRepository branchRepository;
+    private BranchRepository branchRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
-    public BranchServiceImpl(BranchRepository branchRepository, UserRepository userRepository) {
+    public BranchServiceImpl(BranchRepository branchRepository) {
         this.branchRepository = branchRepository;
-        this.userRepository = userRepository;
+        // this.userRepository = userRepository;
     }
 
     // public BranchServiceImpl(BranchRepository branchRepository){
-    //     this.branchRepository = branchRepository;
+    // this.branchRepository = branchRepository;
     // }
 
     @Override
@@ -36,7 +39,7 @@ public class BranchServiceImpl implements BranchService {
     @Override
     public List<Branch> getAllBranches() {
         List<Branch> branchEntities = branchRepository.findAll();
-               return branchEntities;
+        return branchEntities;
     }
 
     @Override
@@ -57,17 +60,16 @@ public class BranchServiceImpl implements BranchService {
         Branch branchEntity = branchRepository.findById(id).get();
         branchEntity.setName(branch.getName());
         branchRepository.save(branchEntity);
-        return branchEntity; 
+        return branchEntity;
     }
 
     @Override
     public Branch createNewBooking(Long branchId, Long userId) {
         Branch branchEntity = branchRepository.findById(branchId).get();
-        User userEntity = userRepository.findById(userId).get(); 
-        branchEntity.getBranchBookings(userEntity);
-        branchRepository.save(branchEntity);
-        return branchEntity;
+        User userEntity = userRepository.findById(userId).get();
+        branchEntity.branchBookings(userEntity);
+        return branchRepository.save(branchEntity);
+
     }
 
-    
 }

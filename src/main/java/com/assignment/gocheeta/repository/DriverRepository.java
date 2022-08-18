@@ -5,8 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.assignment.gocheeta.entity.Driver;
 
-
 @Repository
-public interface DriverRepository extends JpaRepository<Driver,Long> {
-    
+public interface DriverRepository extends JpaRepository<Driver, Long> {
+
 }
