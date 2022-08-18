@@ -3,21 +3,28 @@ package com.assignment.gocheeta.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Table(name = "drivers")
+@Getter
+@Setter
+// @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "drivers")
 public class Driver {
 
     @Id
@@ -26,6 +33,17 @@ public class Driver {
     private String name;
     private String contactNo;
     private String username;
-    private String branch;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "branch_id", referencedColumnName = "id")
+    private Branch branch;
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void assignDriver(Branch branch) {
+        this.branch = branch;
+    }
 
 }

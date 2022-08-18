@@ -17,46 +17,49 @@ import org.springframework.http.ResponseEntity;
 import com.assignment.gocheeta.entity.Driver;
 import com.assignment.gocheeta.services.DriverService;
 
-
 @RestController
 @RequestMapping("/api/v1/")
 public class DriverController {
 
     private final DriverService driverService;
 
-    public DriverController(DriverService driverService){
+    public DriverController(DriverService driverService) {
         this.driverService = driverService;
     }
 
     @PostMapping("/driver")
-    public Driver createDriver(@RequestBody Driver driver){
+    public Driver createDriver(@RequestBody Driver driver) {
         return driverService.createDriver(driver);
     }
 
     @GetMapping("/drivers")
-    public List<Driver> getAllDrivers(){
+    public List<Driver> getAllDrivers() {
         return driverService.getAllDrivers();
     }
-    
+
     @GetMapping("/driver/{id}")
-    public Driver getDriver(@PathVariable Long id){
+    public Driver getDriver(@PathVariable Long id) {
         return driverService.getDriver(id);
     }
 
     @DeleteMapping("/driver/{id}")
-    public ResponseEntity<Map<String,Boolean>> deleteDriver(@PathVariable Long id){
+    public ResponseEntity<Map<String, Boolean>> deleteDriver(@PathVariable Long id) {
         boolean deleted = false;
         deleted = driverService.deleteDriver(id);
-        Map<String,Boolean> response = new Hashtable<>();
+        Map<String, Boolean> response = new Hashtable<>();
         response.put("deleted", deleted);
         return ResponseEntity.ok(response);
 
     }
 
     @PutMapping("/driver/{id}")
-    public ResponseEntity<Driver> updateDriver(@PathVariable Long id, @RequestBody Driver driver){
-        driver = driverService.updateDriver(id,driver);
-        return ResponseEntity.ok(driver); 
+    public ResponseEntity<Driver> updateDriver(@PathVariable Long id, @RequestBody Driver driver) {
+        driver = driverService.updateDriver(id, driver);
+        return ResponseEntity.ok(driver);
+    }
+
+    @PutMapping("/branch/{branchId}/driver/{driverId}")
+    public Driver assignToBranch(@PathVariable Long branchId, @PathVariable Long driverId) {
+        return driverService.assignToBranch(branchId, driverId);
     }
 }
-

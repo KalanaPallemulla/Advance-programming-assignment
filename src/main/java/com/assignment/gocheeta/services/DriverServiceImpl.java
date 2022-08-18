@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.assignment.gocheeta.entity.Branch;
 import com.assignment.gocheeta.entity.Driver;
+import com.assignment.gocheeta.repository.BranchRepository;
 import com.assignment.gocheeta.repository.DriverRepository;
 
 @Service
@@ -14,7 +17,10 @@ public class DriverServiceImpl implements DriverService {
 
     private DriverRepository driverRepository;
 
-    public DriverServiceImpl(DriverRepository driverRepository){
+    @Autowired
+    private BranchRepository branchRepository;
+
+    public DriverServiceImpl(DriverRepository driverRepository) {
         this.driverRepository = driverRepository;
     }
 
@@ -30,10 +36,8 @@ public class DriverServiceImpl implements DriverService {
     public List<Driver> getAllDrivers() {
         List<Driver> driverEntity = driverRepository.findAll();
 
-
         return driverEntity;
     }
-    
 
     @Override
     public Driver getDriver(Long id) {
@@ -61,6 +65,13 @@ public class DriverServiceImpl implements DriverService {
         return driver;
     }
 
-    
-    
+    @Override
+    public Driver assignToBranch(Long branchId, Long driverId) {
+        Driver driver = driverRepository.findById(driverId).get();
+        Branch branch = branchRepository.findById(branchId).get();
+        driver.assignDriver(branch);
+        return driverRepository.save(driver);
+
+    }
+
 }

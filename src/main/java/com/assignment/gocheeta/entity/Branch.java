@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -61,6 +62,14 @@ public class Branch {
 
     public void branchBookings(User userEntity) {
         branchBookings.add(userEntity);
+    }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "branch")
+    private Set<Driver> drivers = new HashSet<>();
+
+    public Set<Driver> getDrivers() {
+        return drivers;
     }
 
 }
