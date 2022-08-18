@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import com.assignment.gocheeta.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "branches")
@@ -54,12 +55,8 @@ public class Branch {
     // branchBookings.add(userEntity);
 
     // }
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_bookings", joinColumns = {
-            @JoinColumn(name = "branch_id", referencedColumnName = "id") }, inverseJoinColumns = {
-                    @JoinColumn(name = "user_id", referencedColumnName = "id")
-            })
+    @ManyToMany
+    @JoinTable(name = "user_bookings", joinColumns = @JoinColumn(name = "branch_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
     private Set<User> branchBookings = new HashSet<>();
 
     public void branchBookings(User userEntity) {
