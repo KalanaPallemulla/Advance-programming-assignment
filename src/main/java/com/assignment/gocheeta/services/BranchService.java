@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.assignment.gocheeta.entity.Branch;
 
-
 public interface BranchService {
 
     Branch addBranch(Branch branch);
@@ -17,6 +16,6 @@ public interface BranchService {
 
     Branch updateBranch(Long id, Branch branch);
 
-    Branch createNewBooking(Long branchId, Long userId);
+    Branch createNewBooking(Long branchId, Long bookingId);
 
 }

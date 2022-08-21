@@ -18,31 +18,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "drivers")
+@Table(name = "vehicle_category")
 @Getter
 @Setter
 // @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Driver {
+public class VehicleCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    private String contactNo;
-    private String username;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "branch_id", referencedColumnName = "id")
-    private Branch branch;
-
-    public Branch getBranch() {
-        return branch;
-    }
-
-    public void assignDriver(Branch branch) {
-        this.branch = branch;
-    }
 
 }

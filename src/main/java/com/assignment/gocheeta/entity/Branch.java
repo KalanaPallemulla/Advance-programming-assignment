@@ -32,6 +32,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Branch {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -58,11 +59,14 @@ public class Branch {
     // }
     @ManyToMany
     @JoinTable(name = "user_bookings", joinColumns = @JoinColumn(name = "branch_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
-    private Set<User> branchBookings = new HashSet<>();
+    private Set<Booking> branchBookings = new HashSet<>();
 
-    public void branchBookings(User userEntity) {
-        branchBookings.add(userEntity);
+    public void branchBookings(Booking booking) {
+        branchBookings.add(booking);
     }
+    // public void branchBookings(Booking booking) {
+    // branchBookings.add(userEntity);
+    // }
 
     @JsonIgnore
     @OneToMany(mappedBy = "branch")

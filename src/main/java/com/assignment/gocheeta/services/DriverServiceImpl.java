@@ -69,6 +69,7 @@ public class DriverServiceImpl implements DriverService {
     public Driver assignToBranch(Long branchId, Long driverId) {
         Driver driver = driverRepository.findById(driverId).get();
         Branch branch = branchRepository.findById(branchId).get();
+
         driver.assignDriver(branch);
         return driverRepository.save(driver);
 

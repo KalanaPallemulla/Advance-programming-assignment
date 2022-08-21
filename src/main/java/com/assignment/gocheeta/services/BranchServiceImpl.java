@@ -7,8 +7,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.assignment.gocheeta.entity.Booking;
 import com.assignment.gocheeta.entity.Branch;
 import com.assignment.gocheeta.entity.User;
+import com.assignment.gocheeta.repository.BookingRepository;
 import com.assignment.gocheeta.repository.BranchRepository;
 import com.assignment.gocheeta.repository.UserRepository;
 
@@ -18,6 +20,9 @@ public class BranchServiceImpl implements BranchService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BookingRepository bookingRepository;
 
     public BranchServiceImpl(BranchRepository branchRepository) {
         this.branchRepository = branchRepository;
@@ -64,10 +69,11 @@ public class BranchServiceImpl implements BranchService {
     }
 
     @Override
-    public Branch createNewBooking(Long branchId, Long userId) {
+    public Branch createNewBooking(Long branchId, Long bookingId) {
         Branch branchEntity = branchRepository.findById(branchId).get();
-        User userEntity = userRepository.findById(userId).get();
-        branchEntity.branchBookings(userEntity);
+        // User userEntity = userRepository.findById(userId).get();
+        Booking booking = bookingRepository.findById(bookingId).get();
+        branchEntity.branchBookings(booking);
         return branchRepository.save(branchEntity);
 
     }
