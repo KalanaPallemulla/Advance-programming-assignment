@@ -27,22 +27,24 @@ import lombok.Setter;
 public class Driver {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
     private String name;
     private String contactNo;
     private String username;
+    private int branch_id;
+    private int status = 0;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "branch_id", referencedColumnName = "id")
-    private Branch branch;
+    // @ManyToOne(cascade = CascadeType.ALL)
+    // @JoinColumn(name = "branch_id", referencedColumnName = "id")
+    // private Branch branch;
 
-    public Branch getBranch() {
-        return branch;
-    }
+    // public Branch getBranch() {
+    // return branch_id;
+    // }
 
-    public void assignDriver(Branch branch) {
-        this.branch = branch;
-    }
+    // public void assignDriver(Branch branch) {
+    // this.branch = branch;
+    // }
 
 }

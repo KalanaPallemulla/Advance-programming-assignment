@@ -37,8 +37,7 @@ public class BranchServiceImpl implements BranchService {
     public Branch addBranch(Branch branch) {
         Branch branchEntity = new Branch();
         BeanUtils.copyProperties(branch, branchEntity);
-        branchRepository.save(branchEntity);
-        return branch;
+        return branchRepository.save(branchEntity);
     }
 
     @Override

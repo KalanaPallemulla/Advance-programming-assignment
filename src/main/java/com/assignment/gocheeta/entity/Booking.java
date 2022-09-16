@@ -34,9 +34,13 @@ public class Booking {
     private Long id;
     private String pickLocation;
     private String dropLocation;
-    private Long user;
-    private Long driver;
-    private Long branch;
+    private String address;
+    private int user_id;
+    private int driver_id = 0;
+    private int branch_id;
+    private int vehicle_id = 0;
+    private int vehicleCat_id;
+    private float cost;
     private String status = "Pending";
 
     // public Booking(String pick, String drip, Long user, Long driver) {

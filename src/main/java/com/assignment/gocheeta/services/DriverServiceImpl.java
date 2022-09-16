@@ -28,8 +28,8 @@ public class DriverServiceImpl implements DriverService {
     public Driver createDriver(Driver driver) {
         Driver driverEntity = new Driver();
         BeanUtils.copyProperties(driver, driverEntity);
-        driverRepository.save(driverEntity);
-        return driver;
+        return driverRepository.save(driverEntity);
+
     }
 
     @Override
@@ -58,21 +58,31 @@ public class DriverServiceImpl implements DriverService {
 
         de.setName(driver.getName());
         de.setUsername(driver.getUsername());
-        de.setBranch(driver.getBranch());
+        de.setBranch_id(driver.getBranch_id());
         de.setContactNo(driver.getContactNo());
 
         driverRepository.save(de);
         return driver;
+        // return null;
+
     }
 
     @Override
     public Driver assignToBranch(Long branchId, Long driverId) {
-        Driver driver = driverRepository.findById(driverId).get();
-        Branch branch = branchRepository.findById(branchId).get();
+        // Driver driver = driverRepository.findById(driverId).get();
+        // Branch branch = branchRepository.findById(branchId).get();
 
-        driver.assignDriver(branch);
-        return driverRepository.save(driver);
+        // driver.assignDriver(branch);
+        // return driverRepository.save(driver);
+        return null;
 
+    }
+
+    @Override
+    public Driver getDriverByUsername(String username) {
+        Driver driver = driverRepository.findByUsername(username);
+
+        return driver;
     }
 
 }

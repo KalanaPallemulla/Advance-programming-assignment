@@ -42,10 +42,30 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Booking acceptBooking(Long id, Booking book) {
         Booking booking = bookingRepository.findById(id).get();
-        booking.setDriver(book.getDriver());
+        booking.setDriver_id(book.getDriver_id());
         booking.setStatus("Confirm");
 
         return bookingRepository.save(booking);
+    }
+
+    @Override
+    public List<Booking> findUserAllBookings(Long id) {
+        // List<Booking> booking = bookingRepository.findByUserId(id);
+        return null;
+    }
+
+    @Override
+    public Booking finishBooking(Long id) {
+        Booking booking = bookingRepository.findById(id).get();
+        booking.setStatus("Finished");
+        return bookingRepository.save(booking);
+    }
+
+    @Override
+    public Booking addVehicle(Long id, Booking booking) {
+        Booking book = bookingRepository.findById(id).get();
+        book.setVehicle_id(booking.getVehicle_id());
+        return bookingRepository.save(book);
     }
 
 }

@@ -68,12 +68,12 @@ public class Branch {
     // branchBookings.add(userEntity);
     // }
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "branch")
-    private Set<Driver> drivers = new HashSet<>();
+    // @JsonIgnore
+    // @OneToMany(mappedBy = "branch")
+    // private Set<Driver> drivers = new HashSet<>();
 
-    public Set<Driver> getDrivers() {
-        return drivers;
-    }
+    // public Set<Driver> getDrivers() {
+    // return drivers;
+    // }
 
 }

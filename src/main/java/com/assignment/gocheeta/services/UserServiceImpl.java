@@ -15,37 +15,33 @@ import com.assignment.gocheeta.repository.UserRepository;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
-    
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-
     @Override
     public User createUser(User user) {
         User userEntity = new User();
         BeanUtils.copyProperties(user, userEntity);
-        userRepository.save(userEntity);
-        return user;
+        return userRepository.save(userEntity);
     }
-
 
     @Override
     public List<User> getAllUsers() {
         List<User> userEntities = userRepository.findAll();
-        // List<UserEntity> users = userEntities.stream().map(user -> new User(user.getId(),user.getName(),user.getEmail(),user.getPassword())).collect(Collectors.toList());
+        // List<UserEntity> users = userEntities.stream().map(user -> new
+        // User(user.getId(),user.getName(),user.getEmail(),user.getPassword())).collect(Collectors.toList());
         return userEntities;
     }
-
 
     @Override
     public User getUser(Long id) {
         User userEntity = userRepository.findById(id).get();
-        // User user = new User(userEntity.getId(), userEntity.getName(), userEntity.getEmail(), userEntity.getPassword());
+        // User user = new User(userEntity.getId(), userEntity.getName(),
+        // userEntity.getEmail(), userEntity.getPassword());
         return userEntity;
     }
-
 
     @Override
     public boolean deleteUser(Long id) {
@@ -54,7 +50,6 @@ public class UserServiceImpl implements UserService {
 
         return true;
     }
-
 
     @Override
     public User updateUser(Long id, User user) {
@@ -66,7 +61,6 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-
     @Override
     public User findUser(String email) {
         User ue = userRepository.findByEmail(email);
@@ -74,7 +68,4 @@ public class UserServiceImpl implements UserService {
         return ue;
     }
 
-
-    
-    
 }

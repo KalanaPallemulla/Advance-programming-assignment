@@ -18,4 +18,6 @@ public interface DriverService {
 
     Driver assignToBranch(Long branchId, Long driverId);
 
+    Driver getDriverByUsername(String username);
+
 }

@@ -14,4 +14,10 @@ public interface BookingService {
 
     Booking acceptBooking(Long id, Booking book);
 
+    List<Booking> findUserAllBookings(Long id);
+
+    Booking finishBooking(Long id);
+
+    Booking addVehicle(Long id, Booking booking);
+
 }
