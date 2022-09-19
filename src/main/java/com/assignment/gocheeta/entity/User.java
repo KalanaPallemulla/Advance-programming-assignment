@@ -30,7 +30,7 @@ import javax.persistence.JoinColumn;
 @Table(name = "users")
 @Getter
 @Setter
-@AllArgsConstructor
+// @AllArgsConstructor
 @NoArgsConstructor
 public class User {
 
@@ -41,6 +41,14 @@ public class User {
     @Column(unique = true)
     private String email;
     private String password;
+    private String contactNo;
+
+    public User(int id, String name, String email, String password, String contactNo) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.contactNo = contactNo;
+    }
 
     // @JsonIgnore
     // @ManyToMany(mappedBy = "branchBookings")

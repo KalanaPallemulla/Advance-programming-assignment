@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import com.assignment.gocheeta.entity.User;
 
-
 public interface UserService {
 
     User createUser(User user);

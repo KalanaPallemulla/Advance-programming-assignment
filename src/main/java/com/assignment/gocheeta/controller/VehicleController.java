@@ -19,7 +19,6 @@ import com.assignment.gocheeta.entity.Vehicle;
 import com.assignment.gocheeta.services.VehicleService;
 
 @CrossOrigin(origins = "http://localhost:3000")
-
 @RestController
 @RequestMapping("/api/v1/")
 public class VehicleController {

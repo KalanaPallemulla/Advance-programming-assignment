@@ -41,7 +41,7 @@ public class DriverController {
 
     @GetMapping("/driver/{id}")
     public Driver getDriver(@PathVariable Long id) {
-        return driverService.getDriver(id);
+        return driverService.getDriverById(id);
     }
 
     @DeleteMapping("/driver/{id}")
@@ -65,9 +65,14 @@ public class DriverController {
         return driverService.assignToBranch(branchId, driverId);
     }
 
-    @GetMapping("/driver/{username}")
+    @GetMapping("/driverusername/{username}")
     public Driver getDriverByUsername(@PathVariable String username) {
         Driver driver = driverService.getDriverByUsername(username);
-        return driver;
+        if (driver.getUsername().equals(username)) {
+            return driver;
+
+        } else {
+            return null;
+        }
     }
 }

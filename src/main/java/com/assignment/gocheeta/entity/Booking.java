@@ -43,13 +43,6 @@ public class Booking {
     private float cost;
     private String status = "Pending";
 
-    // public Booking(String pick, String drip, Long user, Long driver) {
-    // this.pick = pick;
-    // this.drip = drip;
-    // this.user = user;
-    // this.driver = driver;
-    // }
-
     // @JsonIgnore
     // @ManyToMany(mappedBy = "branchBookings")
     // private Set<Branch> branches = new HashSet<>();
@@ -65,5 +58,20 @@ public class Booking {
     @JsonIgnore
     @ManyToMany(mappedBy = "branchBookings")
     private Set<Branch> branches = new HashSet<>();
+
+    public Booking(String pickLocation, String dropLocation, String address, int user_id, int driver_id,
+            int branch_id, int vehicle_id, int vehicleCat_id, float cost, String status, Set<Branch> branches) {
+        this.pickLocation = pickLocation;
+        this.dropLocation = dropLocation;
+        this.address = address;
+        this.user_id = user_id;
+        this.driver_id = driver_id;
+        this.branch_id = branch_id;
+        this.vehicle_id = vehicle_id;
+        this.vehicleCat_id = vehicleCat_id;
+        this.cost = cost;
+        this.status = status;
+        this.branches = branches;
+    }
 
 }

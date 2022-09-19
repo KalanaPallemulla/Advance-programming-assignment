@@ -40,12 +40,6 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public Driver getDriver(Long id) {
-        Driver driverEntity = driverRepository.findById(id).get();
-        return driverEntity;
-    }
-
-    @Override
     public boolean deleteDriver(Long id) {
         Driver driverEntity = driverRepository.findById(id).get();
         driverRepository.delete(driverEntity);
@@ -82,6 +76,12 @@ public class DriverServiceImpl implements DriverService {
     public Driver getDriverByUsername(String username) {
         Driver driver = driverRepository.findByUsername(username);
 
+        return driver;
+    }
+
+    @Override
+    public Driver getDriverById(Long id) {
+        Driver driver = driverRepository.findById(id).get();
         return driver;
     }
 

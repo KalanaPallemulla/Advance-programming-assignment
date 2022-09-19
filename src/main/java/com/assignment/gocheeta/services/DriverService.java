@@ -10,8 +10,6 @@ public interface DriverService {
 
     List<Driver> getAllDrivers();
 
-    Driver getDriver(Long id);
-
     boolean deleteDriver(Long id);
 
     Driver updateDriver(Long id, Driver driver);
@@ -19,5 +17,7 @@ public interface DriverService {
     Driver assignToBranch(Long branchId, Long driverId);
 
     Driver getDriverByUsername(String username);
+
+    Driver getDriverById(Long id);
 
 }
