@@ -42,4 +42,11 @@ public class VehicleCategoryServiceImpl implements VehicleCategoryService {
         return vehicleCategoryRepository.save(vc);
     }
 
+    @Override
+    public boolean deleteVehicle(Long id) {
+        VehicleCategory vc = vehicleCategoryRepository.findById(id).get();
+        vehicleCategoryRepository.delete(vc);
+        return true;
+    }
+
 }

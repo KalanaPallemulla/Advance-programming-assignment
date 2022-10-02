@@ -1,9 +1,12 @@
 package com.assignment.gocheeta.controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Hashtable;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +50,15 @@ public class VehicleCategoryController {
             @RequestBody VehicleCategory vehicleCategory) {
         VehicleCategory vc = vehicleCategoryService.updateCategory(id, vehicleCategory);
         return ResponseEntity.ok(vc);
+    }
+
+    @DeleteMapping("/vc/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteVehicle(@PathVariable Long id) {
+        boolean deleted = false;
+        deleted = vehicleCategoryService.deleteVehicle(id);
+        Map<String, Boolean> response = new Hashtable<>();
+        response.put("deleted", deleted);
+        return ResponseEntity.ok(response);
     }
 
 }

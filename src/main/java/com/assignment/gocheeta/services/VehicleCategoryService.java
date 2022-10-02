@@ -14,4 +14,6 @@ public interface VehicleCategoryService {
 
     VehicleCategory updateCategory(Long id, VehicleCategory vehicleCategory);
 
+    boolean deleteVehicle(Long id);
+
 }
